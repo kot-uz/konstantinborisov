@@ -392,7 +392,7 @@ export default function Home() {
               konstantinborisov<span style={{ color: "var(--accent)" }}>.dev</span>
             </span>
           </a>
-          <div style={{ display: "flex", alignItems: "center", gap: 24, fontFamily: "var(--font-jetbrains-mono),monospace", fontSize: 13 }}>
+          <div className="nav-links" style={{ fontFamily: "var(--font-jetbrains-mono),monospace", fontSize: 13 }}>
             {(["about", "skills", "experience", "projects", "games", "contact"] as const).map(k => (
               <a key={k} href={`#${k}`} style={{ color: "var(--muted)", textDecoration: "none" }}
                 onMouseEnter={e => (e.currentTarget.style.color = "var(--fg)")}
@@ -423,9 +423,9 @@ export default function Home() {
       <main style={{ position: "relative", zIndex: 1 }}>
 
         {/* HERO */}
-        <section id="top" style={{ maxWidth: 1180, margin: "0 auto", padding: "90px 24px 100px", position: "relative" }}>
+        <section id="top" className="hero-section" style={{ maxWidth: 1180, margin: "0 auto", padding: "90px 24px 100px", position: "relative" }}>
           <div style={{ position: "absolute", top: -40, right: 0, width: 420, height: 420, borderRadius: "50%", background: "radial-gradient(circle,rgba(var(--glow),.32),transparent 68%)", filter: "blur(20px)", animation: "pulseGlow 6s ease-in-out infinite", pointerEvents: "none" }} />
-          <div style={{ position: "absolute", top: 120, right: 80, width: 240, height: 240, borderRadius: "50%", border: "1px solid var(--line)", animation: "floatY 9s ease-in-out infinite", pointerEvents: "none" }} />
+          <div className="hero-ring" style={{ position: "absolute", top: 120, right: 80, width: 240, height: 240, borderRadius: "50%", border: "1px solid var(--line)", animation: "floatY 9s ease-in-out infinite", pointerEvents: "none" }} />
           <div style={{ position: "relative", maxWidth: 780 }}>
             <div className="fade-up" style={{ fontFamily: "var(--font-jetbrains-mono),monospace", fontSize: 14, color: "var(--accent)", letterSpacing: ".02em", marginBottom: 22, animationDelay: ".05s" }}>
               {c.hero.kicker}
@@ -464,12 +464,12 @@ export default function Home() {
         <section id="about" data-reveal style={{ maxWidth: 1180, margin: "0 auto", padding: "60px 24px" }}>
           <div style={eyebrowStyle}>{c.about.label}</div>
           <h2 style={{ ...h2Style, fontSize: "clamp(30px,4.4vw,46px)" }}>{c.about.title}</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "1.4fr 1fr", gap: 48, alignItems: "start" }}>
+          <div className="about-grid">
             <div>
               <p style={{ fontSize: 17, lineHeight: 1.75, color: "var(--muted)", margin: "0 0 18px" }}>{c.about.p1}</p>
               <p style={{ fontSize: 17, lineHeight: 1.75, color: "var(--muted)", margin: 0 }}>{c.about.p2}</p>
             </div>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 14 }}>
+            <div className="stats-grid">
               {([
                 [c.about.s1v, c.about.s1l],
                 [c.about.s2v, c.about.s2l],
@@ -489,7 +489,7 @@ export default function Home() {
         <section id="skills" data-reveal style={{ maxWidth: 1180, margin: "0 auto", padding: "60px 24px" }}>
           <div style={eyebrowStyle}>{c.skills.label}</div>
           <h2 style={{ ...h2Style, fontSize: "clamp(30px,4.4vw,46px)" }}>{c.skills.title}</h2>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
+          <div className="skills-grid">
             {([
               [c.skills.frameworks, ["React.js", "Vue 3", "Vue 2", "Next.js", "Nest.js", "Express.js"]],
               [c.skills.state, ["Redux", "Redux Toolkit", "Zustand", "TanStack Query", "Pinia", "Vuex"]],
@@ -548,7 +548,7 @@ export default function Home() {
           <div style={eyebrowStyle}>{c.proj.label}</div>
           <h2 style={{ ...h2Style, fontSize: "clamp(30px,4.4vw,46px)", marginBottom: 12 }}>{c.proj.title}</h2>
           <p style={{ fontSize: 15, color: "var(--muted)", margin: "0 0 40px", fontFamily: "var(--font-jetbrains-mono),monospace" }}>{c.proj.note}</p>
-          <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 16 }}>
+          <div className="projects-grid">
             {([
               {
                 n: "01", proj: c.proj.maps, tags: ["react-leaflet", "React", "TanStack Query"],
@@ -595,7 +595,7 @@ export default function Home() {
 
         {/* GAMES */}
         <section id="games" data-reveal style={{ maxWidth: 1180, margin: "0 auto", padding: "60px 24px" }}>
-          <div style={{ border: "1px solid var(--line)", borderRadius: 24, padding: 44, background: "linear-gradient(135deg,rgba(var(--glow),.12),transparent 70%), var(--bg-2)", position: "relative", overflow: "hidden" }}>
+          <div className="games-card" style={{ border: "1px solid var(--line)", borderRadius: 24, padding: 44, background: "linear-gradient(135deg,rgba(var(--glow),.12),transparent 70%), var(--bg-2)", position: "relative", overflow: "hidden" }}>
             <div style={{ position: "absolute", top: -60, right: -40, width: 300, height: 300, borderRadius: "50%", background: "radial-gradient(circle,rgba(var(--glow),.25),transparent 70%)", filter: "blur(20px)", pointerEvents: "none" }} />
             <div style={{ position: "relative" }}>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 14 }}>
@@ -606,7 +606,7 @@ export default function Home() {
               </div>
               <h2 style={{ fontFamily: "var(--font-space-grotesk),sans-serif", fontWeight: 600, fontSize: "clamp(28px,4vw,42px)", letterSpacing: "-.02em", margin: "0 0 14px", maxWidth: 560 }}>{c.games.title}</h2>
               <p style={{ fontSize: 17, lineHeight: 1.7, color: "var(--muted)", margin: "0 0 32px", maxWidth: 600 }}>{c.games.desc}</p>
-              <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, maxWidth: 720 }}>
+              <div className="games-grid">
                 {([
                   { id: "game_01", t: c.games.g1t, d: c.games.g1d, tags: ["Flutter", "Flame"] },
                   { id: "game_02", t: c.games.g2t, d: c.games.g2d, tags: ["Flutter", "Dart"] },
@@ -630,7 +630,7 @@ export default function Home() {
 
         {/* CONTACT */}
         <section id="contact" data-reveal style={{ maxWidth: 1180, margin: "0 auto", padding: "60px 24px 80px" }}>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 48, alignItems: "start" }}>
+          <div className="contact-grid">
             <div>
               <div style={eyebrowStyle}>{c.contact.label}</div>
               <h2 style={{ fontFamily: "var(--font-space-grotesk),sans-serif", fontWeight: 600, fontSize: "clamp(30px,4.4vw,46px)", letterSpacing: "-.02em", margin: "0 0 16px" }}>{c.contact.title}</h2>
