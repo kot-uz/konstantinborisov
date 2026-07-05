@@ -1392,24 +1392,8 @@ export default function Home() {
                 ),
               },
               {
-                n: "05",
-                proj: c.proj.rental,
-                tags: ["Next.js", "Leaflet", "Zustand"],
-                icon: (
-                  <svg
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="var(--accent)"
-                    strokeWidth="1.6"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    style={{ width: 30, height: 30, marginBottom: 16 }}
-                  >
-                    <path d="M3 11 12 3l9 8" />
-                    <path d="M5 10v10h14V10" />
-                    <path d="M10 20v-6h4v6" />
-                  </svg>
-                ),
+                n: "05", proj: c.proj.rental, tags: ["Next.js", "Leaflet", "Zustand"], url: "https://rent.konstantinborisov.dev",
+                icon: <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ width: 30, height: 30, marginBottom: 16 }}><path d="M3 11 12 3l9 8" /><path d="M5 10v10h14V10" /><path d="M10 20v-6h4v6" /></svg>,
               },
               {
                 n: "06",
@@ -1430,53 +1414,14 @@ export default function Home() {
                   </svg>
                 ),
               },
-            ].map(({ n, proj, tags, icon }) => (
-              <div
-                key={n}
-                style={{
-                  ...cardStyle,
-                  position: "relative",
-                  overflow: "hidden",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "rgba(var(--glow),.45)";
-                  e.currentTarget.style.transform = "translateY(-3px)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.borderColor = "var(--line)";
-                  e.currentTarget.style.transform = "none";
-                }}
-              >
-                <div
-                  style={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    marginBottom: 18,
-                  }}
-                >
-                  <span
-                    style={{
-                      fontFamily: "var(--font-jetbrains-mono),monospace",
-                      fontSize: 12,
-                      color: "var(--muted)",
-                    }}
-                  >
-                    {n}
-                  </span>
-                  <span
-                    style={{
-                      fontFamily: "var(--font-jetbrains-mono),monospace",
-                      fontSize: 10,
-                      color: "var(--accent)",
-                      padding: "3px 8px",
-                      border: "1px solid rgba(var(--glow),.3)",
-                      borderRadius: 6,
-                      letterSpacing: ".08em",
-                    }}
-                  >
-                    NDA
-                  </span>
+            ]).map(({ n, proj, tags, icon, url }) => (
+              <div key={n} style={{ ...cardStyle, position: "relative", overflow: "hidden", cursor: url ? "pointer" : undefined }}
+                onClick={url ? () => window.open(url, "_blank", "noopener,noreferrer") : undefined}
+                onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(var(--glow),.45)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
+                onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--line)"; e.currentTarget.style.transform = "none"; }}>
+                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18 }}>
+                  <span style={{ fontFamily: "var(--font-jetbrains-mono),monospace", fontSize: 12, color: "var(--muted)" }}>{n}</span>
+                  {!url && <span style={{ fontFamily: "var(--font-jetbrains-mono),monospace", fontSize: 10, color: "var(--accent)", padding: "3px 8px", border: "1px solid rgba(var(--glow),.3)", borderRadius: 6, letterSpacing: ".08em" }}>NDA</span>}
                 </div>
                 {icon}
                 <div
