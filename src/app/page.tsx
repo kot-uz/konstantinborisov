@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 
 type Variant = "aurora" | "terminal" | "neon";
 type Lang = "ru" | "en";
@@ -658,24 +659,16 @@ export default function Home() {
               textDecoration: "none",
             }}
           >
-            <span
+            <Image
+              src="/kb_logo.jpg"
+              alt="KB"
+              width={36}
+              height={36}
               style={{
-                width: 36,
-                height: 36,
                 borderRadius: 10,
-                display: "grid",
-                placeItems: "center",
-                fontFamily: "var(--font-jetbrains-mono),monospace",
-                fontWeight: 600,
-                fontSize: 14,
-                color: "#05070d",
-                background:
-                  "linear-gradient(135deg,var(--accent),var(--accent-2))",
                 boxShadow: "0 0 20px rgba(var(--glow),.55)",
               }}
-            >
-              KB
-            </span>
+            />
             <span
               style={{
                 fontFamily: "var(--font-jetbrains-mono),monospace",
