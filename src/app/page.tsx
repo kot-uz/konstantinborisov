@@ -1414,7 +1414,7 @@ export default function Home() {
                   </svg>
                 ),
               },
-            ]).map(({ n, proj, tags, icon, url }) => (
+            ].map(({ n, proj, tags, icon, url }) => (
               <div key={n} style={{ ...cardStyle, position: "relative", overflow: "hidden", cursor: url ? "pointer" : undefined }}
                 onClick={url ? () => window.open(url, "_blank", "noopener,noreferrer") : undefined}
                 onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(var(--glow),.45)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
