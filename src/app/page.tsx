@@ -216,6 +216,10 @@ const RU = {
     label: "04 / проекты",
     title: "Избранные кейсы",
     note: "// проекты под NDA — показаны обобщённо, без брендов и данных",
+    klod: {
+      t: "Командная агентная система",
+      d: "Командная агентная система на базе Claude Agent SDK: чат в стиле ChatGPT со встроенным управлением GitHub-репозиториями, полноценным кодинг-агентом, ролями доступа и учётом токенов подписки.",
+    },
     maps: {
       t: "Гео-платформа",
       d: "Интерактивные карты со слоями и фильтрами, перемещением объектов в реальном времени.",
@@ -330,6 +334,10 @@ const EN = {
     label: "04 / projects",
     title: "Selected work",
     note: "// projects under NDA — shown abstractly, no brands or data",
+    klod: {
+      t: "Team Agentic System",
+      d: "A team-based agentic system built on the Claude Agent SDK: a ChatGPT-style chat with built-in GitHub repository management, a full coding agent, role-based access and subscription token tracking.",
+    },
     maps: {
       t: "Geo platform",
       d: "Interactive maps with objects, popovers, and real-time filtering and moving objects.",
@@ -1307,6 +1315,26 @@ export default function Home() {
             {[
               {
                 n: "01",
+                proj: c.proj.klod,
+                tags: ["Next.js", "Claude Agent SDK", "PostgreSQL"],
+                url: "https://klod.konstantinborisov.dev",
+                icon: (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="var(--accent)"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ width: 30, height: 30, marginBottom: 16 }}
+                  >
+                    <rect x="7" y="7" width="10" height="10" rx="2" />
+                    <path d="M7 3v2M12 3v2M17 3v2M7 19v2M12 19v2M17 19v2M3 7h2M3 12h2M3 17h2M19 7h2M19 12h2M19 17h2" />
+                  </svg>
+                ),
+              },
+              {
+                n: "02",
                 proj: c.proj.maps,
                 tags: ["react-leaflet", "React", "TanStack Query"],
                 icon: (
@@ -1325,7 +1353,7 @@ export default function Home() {
                 ),
               },
               {
-                n: "02",
+                n: "03",
                 proj: c.proj.kanban,
                 tags: ["React DnD", "Redux Toolkit", "WebSocket"],
                 icon: (
@@ -1345,7 +1373,7 @@ export default function Home() {
                 ),
               },
               {
-                n: "03",
+                n: "04",
                 proj: c.proj.docs,
                 tags: ["Vue 3", "Pinia", "Nest.js"],
                 icon: (
@@ -1364,7 +1392,7 @@ export default function Home() {
                 ),
               },
               {
-                n: "04",
+                n: "05",
                 proj: c.proj.dash,
                 tags: ["Nivo", "Recharts", "Next.js"],
                 icon: (
@@ -1385,11 +1413,11 @@ export default function Home() {
                 ),
               },
               {
-                n: "05", proj: c.proj.rental, tags: ["Next.js", "Leaflet", "Zustand"], url: "https://rent.konstantinborisov.dev",
+                n: "06", proj: c.proj.rental, tags: ["Next.js", "Leaflet", "Zustand"], url: "https://rent.konstantinborisov.dev",
                 icon: <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ width: 30, height: 30, marginBottom: 16 }}><path d="M3 11 12 3l9 8" /><path d="M5 10v10h14V10" /><path d="M10 20v-6h4v6" /></svg>,
               },
               {
-                n: "06",
+                n: "07",
                 proj: c.proj.comms,
                 tags: ["WebRTC", "React", "Socket.io"],
                 icon: (
