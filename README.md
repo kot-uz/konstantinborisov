@@ -26,19 +26,25 @@ npm run start
 4. Click **Deploy**.
 5. To use a custom domain (`konstantinborisov.dev`), go to **Project Settings → Domains** and add it, then update your DNS records as shown.
 
-No environment variables are required.
+### Contact form (required)
+
+The contact form sends email via [Resend](https://resend.com). Without it, submissions fail with a `503`.
+
+1. Sign up at resend.com and grab an API key.
+2. In Vercel → **Project Settings → Environment Variables**, add `RESEND_API_KEY` with that value.
+3. Redeploy for the variable to take effect.
 
 ## Editing Content
 
 All portfolio content lives in `src/data/` — edit these files without touching any UI components:
 
-| File | What it controls |
-|---|---|
-| `src/data/site.ts` | Name, title, description, domain, nav links |
-| `src/data/skills.ts` | Skill groups and technologies |
-| `src/data/projects.ts` | Project cards (name, description, tech, links) |
-| `src/data/experience.ts` | Work history timeline |
-| `src/data/socials.ts` | Email, GitHub, Telegram, LinkedIn |
+| File                     | What it controls                               |
+| ------------------------ | ---------------------------------------------- |
+| `src/data/site.ts`       | Name, title, description, domain, nav links    |
+| `src/data/skills.ts`     | Skill groups and technologies                  |
+| `src/data/projects.ts`   | Project cards (name, description, tech, links) |
+| `src/data/experience.ts` | Work history timeline                          |
+| `src/data/socials.ts`    | Email, GitHub, Telegram, LinkedIn              |
 
 ## Stack
 
