@@ -130,9 +130,23 @@ input, textarea {
   align-items: start;
 }
 
+.cal-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.cal-showcase-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: 44px;
+  align-items: center;
+}
+
 @media (max-width: 900px) {
   .skills-grid { grid-template-columns: repeat(2, 1fr); }
   .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .cal-features-grid { grid-template-columns: repeat(2, 1fr); }
 }
 
 @media (max-width: 600px) {
@@ -149,4 +163,7 @@ input, textarea {
   .games-grid { grid-template-columns: 1fr; max-width: none; }
 
   .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+
+  .cal-features-grid { grid-template-columns: 1fr; }
+  .cal-showcase-grid { grid-template-columns: 1fr; gap: 28px; }
 }

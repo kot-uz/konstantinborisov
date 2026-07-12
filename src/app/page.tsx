@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 type Variant = "aurora" | "terminal" | "neon";
 type Lang = "ru" | "en";
@@ -215,7 +216,11 @@ const RU = {
   proj: {
     label: "04 / проекты",
     title: "Избранные кейсы",
-    note: "// проекты под NDA — показаны обобщённо, без брендов и данных",
+    note: "// личные проекты — с исходным кодом и живым демо; коммерческие — под NDA",
+    calendar: {
+      t: "Календарь",
+      d: "Аналог Google Календаря: своя авторизация, повторяющиеся события, задачи с шарингом, вложения и уведомления в реальном времени.",
+    },
     klod: {
       t: "Командная агентная система",
       d: "Командная агентная система на базе Claude Agent SDK: чат в стиле ChatGPT со встроенным управлением GitHub-репозиториями, полноценным кодинг-агентом, ролями доступа и учётом токенов подписки.",
@@ -333,7 +338,11 @@ const EN = {
   proj: {
     label: "04 / projects",
     title: "Selected work",
-    note: "// projects under NDA — shown abstractly, no brands or data",
+    note: "// personal projects — with source code and live demo; commercial ones under NDA",
+    calendar: {
+      t: "Calendar",
+      d: "A Google Calendar clone: own auth, recurring events, shareable tasks, attachments and real-time notifications.",
+    },
     klod: {
       t: "Team Agentic System",
       d: "A team-based agentic system built on the Claude Agent SDK: a ChatGPT-style chat with built-in GitHub repository management, a full coding agent, role-based access and subscription token tracking.",
@@ -601,6 +610,7 @@ export default function Home() {
   const [variant, setVariant] = useState<Variant>("aurora");
   const [lang, setLang] = useState<Lang>("ru");
   const c = lang === "ru" ? RU : EN;
+  const router = useRouter();
 
   useReveal();
 
@@ -1315,6 +1325,47 @@ export default function Home() {
             {[
               {
                 n: "01",
+                proj: c.proj.rental,
+                tags: ["Next.js", "React 19", "NestJS", "PostgreSQL"],
+                href: "/rental",
+                icon: (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="var(--accent)"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ width: 30, height: 30, marginBottom: 16 }}
+                  >
+                    <path d="M3 11 12 3l9 8" />
+                    <path d="M5 10v10h14V10" />
+                    <path d="M10 20v-6h4v6" />
+                  </svg>
+                ),
+              },
+              {
+                n: "02",
+                proj: c.proj.calendar,
+                tags: ["NestJS", "React 19", "PostgreSQL", "WebSocket"],
+                href: "/calendar",
+                icon: (
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="var(--accent)"
+                    strokeWidth="1.6"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    style={{ width: 30, height: 30, marginBottom: 16 }}
+                  >
+                    <rect x="3" y="4" width="18" height="17" rx="2" />
+                    <path d="M3 9h18M8 2v4M16 2v4M8 13h3M8 17h3" />
+                  </svg>
+                ),
+              },
+              {
+                n: "03",
                 proj: c.proj.klod,
                 tags: ["Next.js", "Claude Agent SDK", "PostgreSQL"],
                 url: "https://klod.konstantinborisov.dev",
@@ -1334,7 +1385,7 @@ export default function Home() {
                 ),
               },
               {
-                n: "02",
+                n: "04",
                 proj: c.proj.maps,
                 tags: ["react-leaflet", "React", "TanStack Query"],
                 icon: (
@@ -1353,7 +1404,7 @@ export default function Home() {
                 ),
               },
               {
-                n: "03",
+                n: "05",
                 proj: c.proj.kanban,
                 tags: ["React DnD", "Redux Toolkit", "WebSocket"],
                 icon: (
@@ -1373,7 +1424,7 @@ export default function Home() {
                 ),
               },
               {
-                n: "04",
+                n: "06",
                 proj: c.proj.docs,
                 tags: ["Vue 3", "Pinia", "Nest.js"],
                 icon: (
@@ -1392,7 +1443,7 @@ export default function Home() {
                 ),
               },
               {
-                n: "05",
+                n: "07",
                 proj: c.proj.dash,
                 tags: ["Nivo", "Recharts", "Next.js"],
                 icon: (
@@ -1413,11 +1464,7 @@ export default function Home() {
                 ),
               },
               {
-                n: "06", proj: c.proj.rental, tags: ["Next.js", "Leaflet", "Zustand"], url: "https://rent.konstantinborisov.dev",
-                icon: <svg viewBox="0 0 24 24" fill="none" stroke="var(--accent)" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ width: 30, height: 30, marginBottom: 16 }}><path d="M3 11 12 3l9 8" /><path d="M5 10v10h14V10" /><path d="M10 20v-6h4v6" /></svg>,
-              },
-              {
-                n: "07",
+                n: "08",
                 proj: c.proj.comms,
                 tags: ["WebRTC", "React", "Socket.io"],
                 icon: (
@@ -1435,45 +1482,99 @@ export default function Home() {
                   </svg>
                 ),
               },
-            ].map(({ n, proj, tags, icon, url }) => (
-              <div key={n} style={{ ...cardStyle, position: "relative", overflow: "hidden", cursor: url ? "pointer" : undefined }}
-                onClick={url ? () => window.open(url, "_blank", "noopener,noreferrer") : undefined}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = "rgba(var(--glow),.45)"; e.currentTarget.style.transform = "translateY(-3px)"; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--line)"; e.currentTarget.style.transform = "none"; }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 18 }}>
-                  <span style={{ fontFamily: "var(--font-jetbrains-mono),monospace", fontSize: 12, color: "var(--muted)" }}>{n}</span>
-                  {!url && <span style={{ fontFamily: "var(--font-jetbrains-mono),monospace", fontSize: 10, color: "var(--accent)", padding: "3px 8px", border: "1px solid rgba(var(--glow),.3)", borderRadius: 6, letterSpacing: ".08em" }}>NDA</span>}
-                </div>
-                {icon}
+            ].map(({ n, proj, tags, icon, url, href }) => {
+              const clickable = url || href;
+              const badge = href || url ? null : "NDA";
+              return (
                 <div
+                  key={n}
                   style={{
-                    fontFamily: "var(--font-space-grotesk),sans-serif",
-                    fontSize: 19,
-                    fontWeight: 600,
-                    marginBottom: 8,
+                    ...cardStyle,
+                    position: "relative",
+                    overflow: "hidden",
+                    cursor: clickable ? "pointer" : undefined,
+                  }}
+                  onClick={
+                    href
+                      ? () => router.push(href)
+                      : url
+                        ? () =>
+                            window.open(url, "_blank", "noopener,noreferrer")
+                        : undefined
+                  }
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "rgba(var(--glow),.45)";
+                    e.currentTarget.style.transform = "translateY(-3px)";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "var(--line)";
+                    e.currentTarget.style.transform = "none";
                   }}
                 >
-                  {proj.t}
-                </div>
-                <p
-                  style={{
-                    fontSize: 14.5,
-                    lineHeight: 1.6,
-                    color: "var(--muted)",
-                    margin: "0 0 16px",
-                  }}
-                >
-                  {proj.d}
-                </p>
-                <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                  {tags.map((t) => (
-                    <span key={t} style={tagStyle}>
-                      {t}
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      marginBottom: 18,
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontFamily: "var(--font-jetbrains-mono),monospace",
+                        fontSize: 12,
+                        color: "var(--muted)",
+                      }}
+                    >
+                      {n}
                     </span>
-                  ))}
+                    {badge && (
+                      <span
+                        style={{
+                          fontFamily: "var(--font-jetbrains-mono),monospace",
+                          fontSize: 10,
+                          color: "var(--accent)",
+                          padding: "3px 8px",
+                          border: "1px solid rgba(var(--glow),.3)",
+                          borderRadius: 6,
+                          letterSpacing: ".08em",
+                        }}
+                      >
+                        {badge}
+                      </span>
+                    )}
+                  </div>
+                  {icon}
+                  <div
+                    style={{
+                      fontFamily: "var(--font-space-grotesk),sans-serif",
+                      fontSize: 19,
+                      fontWeight: 600,
+                      marginBottom: 8,
+                    }}
+                  >
+                    {proj.t}
+                  </div>
+                  <p
+                    style={{
+                      fontSize: 14.5,
+                      lineHeight: 1.6,
+                      color: "var(--muted)",
+                      margin: "0 0 16px",
+                    }}
+                  >
+                    {proj.d}
+                  </p>
+                  <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
+                    {tags.map((t) => (
+                      <span key={t} style={tagStyle}>
+                        {t}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
